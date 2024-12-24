@@ -13,12 +13,12 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
-class Registeration(models.Model):
+class Registration(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(default=timezone.now)
     email = models.EmailField(max_length=100)
     
     def __str__(self):
-        return f"{self.user.username} - {self.event.name}"
+        return f"{self.user.username} - {self.event.name} "
     
