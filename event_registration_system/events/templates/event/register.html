@@ -3,5 +3,13 @@
 {% block title %} Register{% endblock title %}
 
 {% block content %}
-    <h1>Register for Events</h1>
+    <h1>Register for Events:</h1>
+    <h2> Event: {{ event.name }} </h2>
+    <p> description: {{ event.description }} </p>    
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+   
+        <button type="submit">Register</button>
+    </form>
 {% endblock content %}
