@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Manage Registration {% endblock title %}
+
+{% block content %}
+<h1>Manage Registration </h1>
+<p>Are you sure you want to cancel your registration for the event: <span style="font-weight: bold;"> {{ registration.event.name }}</span></p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Cancel Registration</button>
+</form>
+{% endblock content %}

@@ -6,5 +6,7 @@
 <h1>Event Details</h1>
 <h2> {{ event.name }} </h2>
 <p> {{ event.description }} </p>
-<a href="{% url 'register' %}">register</a>
+<p>Date: {{ event.date }}</p>
+<p>Location: {{ event.location }}</p>
+<a href="{% url 'register' event.id %}">register</a>
 {% endblock content%}

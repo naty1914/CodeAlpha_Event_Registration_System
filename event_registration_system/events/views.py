@@ -5,7 +5,6 @@ from .models import Event, Registration
 from .forms import RegistrationForm
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
-from django.views.decorators.csrf import csrf_exempt
 
 def events(request):
     events = Event.objects.all()
@@ -30,21 +29,24 @@ def register(request, id):
             from_email = 'nati@gmail.com'
             recipient_email = [registration.email]
             send_mail(subject, message, from_email, recipient_email, fail_silently=False)
-            return HttpResponse('registration successful')
+            return render(request, 'event/registration_success.html', {'event': event })
     else:
         form = RegistrationForm()
         context = {'form': form, 'event': event}
         return render(request, 'event/register.html', context)
     
-@csrf_exempt
 def manage_registration(request, token):
-    
     registration = get_object_or_404(Registration, token=token)
     if request.method == 'POST':
+        subject = "Event Registration Cancelled"
+        message = f"Your registration for the event: {registration.event.name} has been cancelled."
+        from_email = 'nati@gmail.com'
+        recipient_email = [registration.email]
+        send_mail(subject, message, from_email, recipient_email, fail_silently=False)
         registration.delete()
-        return HttpResponse('Registration hab been  cancelled')
+        return render(request, 'event/registration_cancelled.html', {'registration': registration})
     else:
-        return HttpResponse(f'Managing registration for: {registration.username}. To cancel, submit a POST request.')
+        return render(request, 'event/manage_registration.html', {'registration': registration})
     
             
             
