@@ -1,3 +1,4 @@
+""" This module contains the view functions for the event registration system """
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
@@ -8,13 +9,16 @@ from django.core.mail import send_mail
 from django.core.exceptions import ValidationError
 
 def events(request):
+    """ View function for events """
     events = Event.objects.all()
     return render(request, 'event/events.html', {'events': events})
 def event_details(request, id):
+    """ View function for event details """
     event = get_object_or_404(Event, id=id)
     return render(request, 'event/event_details.html', {'event': event})
 
 def register(request, id):
+    """ View function for event registration """
     event = get_object_or_404(Event, id=id)
     if request.method == 'POST':
         form = RegistrationForm(request.POST, fields=['username', 'email'])
@@ -40,6 +44,7 @@ def register(request, id):
         return render(request, 'event/register.html', context)
     
 def manage_registration(request, token):
+    """ View function for managing registration """
     registration = get_object_or_404(Registration, token=token)
     if request.method == 'POST':
         subject = "Event Registration Cancelled"
