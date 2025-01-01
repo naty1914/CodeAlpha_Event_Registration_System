@@ -22,7 +22,7 @@ class Registration(models.Model):
     
     def __str__(self):
         return f"{self.username} - {self.event.name} - {self.date.date()}"
-    
+
     def save(self, *args, **kwargs):
         
         if self.event.id is None:
