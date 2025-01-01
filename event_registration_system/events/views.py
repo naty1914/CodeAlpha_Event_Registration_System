@@ -33,7 +33,7 @@ def register(request, id):
                 send_mail(subject, message, from_email, recipient_email, fail_silently=False)
                 return render(request, 'event/registration_success.html', {'event': event })
             except ValidationError as e:
-                 return HttpResponse(f'Registration failed: {e.message}')
+                 return render(request, 'event/registration_error.html', {'error_message': e.message})
     else:
         form = RegistrationForm(fields=['username', 'email'])
         context = {'form': form, 'event': event}

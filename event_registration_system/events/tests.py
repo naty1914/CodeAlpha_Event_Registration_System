@@ -45,4 +45,3 @@ class RegistrationFormTest(TestCase):
         }
         form = RegistrationForm(form_data)
         self.assertTrue(form.is_valid())
-        

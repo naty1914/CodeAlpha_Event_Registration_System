@@ -3,13 +3,34 @@
 {% block title %} Register{% endblock title %}
 
 {% block content %}
-    <h1>Register for Events:</h1>
-    <h2> Event: {{ event.name }} </h2>
-    <p> description: {{ event.description }} </p>    
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-   
-        <button type="submit">Register</button>
-    </form>
+<div class="container">
+    <h1 class="my-4">Register for Events</h1>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Event: {{ event.name }}</h2>
+            <p class="card-text">Description: {{ event.description }}</p>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    {{ form.username }}
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group label {
+        display: block;  
+    }
+    .form-group input {
+        box-sizing: border-box;
+    }
+</style>
 {% endblock content %}

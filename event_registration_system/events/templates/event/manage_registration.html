@@ -7,6 +7,6 @@
 <p>Are you sure you want to cancel your registration for the event: <span style="font-weight: bold;"> {{ registration.event.name }}</span></p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Cancel Registration</button>
+    <button type="submit" class="btn btn-outline-danger">Cancel Registration</button>
 </form>
 {% endblock content %}
