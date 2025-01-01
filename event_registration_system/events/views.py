@@ -31,7 +31,7 @@ def register(request, id):
                 relative_url = reverse('manage_registration', args=[registration.token])
                 confirmation_email = request.build_absolute_uri(relative_url)
                 subject = 'Event Registration Confirmation'
-                message = f"Please click the link below to confirm your registration for the event: {event.name} {confirmation_email}"
+                message = f"Please click the link below to manage your registration for the event: {event.name} {confirmation_email}"
                 from_email = 'nati@gmail.com'
                 recipient_email = [registration.email]
                 send_mail(subject, message, from_email, recipient_email, fail_silently=False)

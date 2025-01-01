@@ -13,7 +13,7 @@ The CodeAlpha Event Registration System is a web application built using Django 
 ## Technologies Used
 - **Backend Framework**: Django (Python)
 - **Database**: SQLite
-- **Frontend**: HTML, CSS
+- **Frontend**: HTML, CSS,Bootstrap
 - **Email**: Django's email backend
 
 ## Installation
@@ -32,47 +32,49 @@ The CodeAlpha Event Registration System is a web application built using Django 
 
 3. **Install dependencies**:
     ```bash
+    cd  event_registration_system 
     pip install -r requirements.txt
     ```
 
-4. **Generate the requirements file**:
-    ```bash
-    pip freeze > requirements.txt
-    ```
 
-5. **Apply migrations**:
+
+4. **Apply migrations**:
     ```bash
+    python manage.py makemigrations
     python manage.py migrate
     ```
 
-6. **Create a superuser**:
+5. **Create a superuser**:
     ```bash
     python manage.py createsuperuser
     ```
 
-7. **Run the development server**:
+6. **Run the development server**:
     ```bash
     python manage.py runserver
     ```
 
-8. **Access the application**:
-    Open your web browser and go to `http://127.0.0.1:8000/`.
+7. **Access the application**:
+    Open your web browser and go to `http://127.0.0.1:8000/`. 
+8. **Access the admin panel**:
+    Go to `http://127.0.0.1:8000/admin/` and log in using the superuser credentials you created earlier. You can add, edit, and manage events, registrations, and users from the admin panel.
+
 
 ## Email Configuration
 
 To configure email settings, open the `settings.py` file and update the following settings with your email provider's details:
-
 ```python
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.your-email-provider.com'
+EMAIL_HOST = 'your-email-provider.com like smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'your-email@example.com'
 EMAIL_HOST_PASSWORD = 'your-email-password'
 DEFAULT_FROM_EMAIL = 'your-email@example.com'
-
+```
+ ## Note: If you don't have an email provider, you can comment out the send_mail function calls in the views.py file.
 ## Usage
 
 1. **View Events**:
