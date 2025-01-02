@@ -58,5 +58,6 @@ def manage_registration(request, token):
         return render(request, 'event/manage_registration.html', {'registration': registration})
     
             
-            
-            
+def contact(request):
+    """ View function for contact """
+    return render(request, 'event/contact.html')     
